@@ -1,0 +1,102 @@
+
+    <div class="container containerSyle" ng-init="loadUnionList()" >
+        <div class="col-md-12">
+            <br/>
+        </div>
+
+        <div class="pull-left">
+            <h1>Unions</h1>
+        </div>
+
+        <div class="col-md-12">
+
+            <div class="pull-right">
+                <button type="button" class="btn btn-default" ng-click="goToMainPage()" >Back to main page</button>
+                <button type="button" class="btn btn-default" ng-click="cleanFormUnion()" > Add</button>
+                <br/>
+                <br/>
+            </div>
+
+            <div ng-show="showUnionForm" >
+
+                <div class="col-md-12">
+                    <br/>
+                </div>
+
+                <div class="col-md-12" style="background-color: white">
+
+                    <div class="pull-right">
+                        <button type="button" class="btn btn-default" ng-click="hideUnionForm()" >Close</button>
+                    </div>
+
+                    <h2>{{titleForm}}</h2>
+
+                    <form name="cForm" >
+
+
+                        <div class="form-group">
+                            <div class="form-group">
+                                <label for="countryid">Select the country:</label>
+                                <select id="countryid"  ng-options="c.idcountry as c.country for c in countriesSelectList" ng-model="unionForm.idcountry" />
+                            </div>
+
+                        </div>
+
+                        <div class="form-group">
+                            <label for="name">Union's name:<span style="color:red">*</span></label>
+                            <input type="text" class="form-control" id="name" name="fullnametxt" ng-model="unionForm.unionname" required>
+                            <span ng-show="!cForm.$pristine && cForm.fullnametxt.$error.required"  class="RedFont">Union's name is required.</span>
+
+                        </div>
+
+                        <div ng-show="showMessage" class="alert {{ typeMessage === 'sucess' ? 'colorSuccess' : 'colorDanger' }}" >
+                            <span  ng-click="showMessage = false">&times;</span>
+                            <strong>{{ typeMessage === 'sucess' ? 'Success' : 'Danger' }}!</strong> {{textMessage}}
+                        </div>
+
+                        <div class="pull-right">
+
+                            <button ng-show="showSaveButton" type="submit" class="btn btn-info" ng-disabled="!cForm.$valid" ng-click="saveUnion()" onclick="$('.alert').show()" >Save</button>
+                            <button ng-show="showUpdateButton" type="submit" class="btn btn-warning" ng-disabled="!cForm.$valid" ng-click="udpateUnion()" onclick="$('.alert').show()" >Update</button>
+                            <button ng-show="showDeleteButton" type="submit" class="btn btn-danger" ng-disabled="!cForm.$valid" ng-click="deleteUnion()" onclick="$('.alert').show()" >Delete</button>
+
+                        </div>
+
+                    </form>
+
+
+                </div>
+
+
+
+
+            </div>
+
+
+
+            <table class="table table-striped table-inverse" ng-show="districtsList.length != 0" >
+                <thead >
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Country</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="u in unionList">
+                    <th scope="row">{{u.union.idunion}}</th>
+                    <td>{{u.union.unionname}}</td>
+                    <td>{{u.country.country}}</td>
+                    <td><span  ng-click="selectUnion(u)" class="glyphicon glyphicon-eye-open IconRemove"></span></td>
+                </tr>
+
+                </tbody>
+            </table>
+
+
+            <div class="col-md-12">
+                <br/>
+            </div>
+
+
+        </div>
