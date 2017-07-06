@@ -13,5 +13,7 @@ public interface InstitutionRepository extends CrudRepository<Institutions,Integ
 
     public List<Institutions> findByActive(boolean active);
 
+    public List<Institutions> findByActiveOrderByIdtypeinstitutionsAsc(boolean active);
+
     public Institutions findByName(String name);
 }

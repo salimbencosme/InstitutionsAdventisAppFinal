@@ -11,8 +11,8 @@
         <div class="col-md-12">
 
             <div class="pull-right">
-                <button type="button" class="btn btn-default" ng-click="goToMainPage()" >Back to main page</button>
-                <button type="button" class="btn btn-default" ng-click="cleanFormUnion()" > Add</button>
+                <button type="button" class="btn btn-default mentinaceButton" ng-click="goToMainPage()" >Back to main page</button>
+                <button type="button" class="btn btn-default buttonAdd" ng-click="cleanFormUnion()" > Add</button>
                 <br/>
                 <br/>
             </div>
@@ -23,10 +23,12 @@
                     <br/>
                 </div>
 
-                <div class="col-md-12" style="background-color: white">
+                <div class="col-md-12 formMentinaceStyle" >
+
+
 
                     <div class="pull-right">
-                        <button type="button" class="btn btn-default" ng-click="hideUnionForm()" >Close</button>
+                        <button type="button" class="btn btn-default closeButton" ng-click="hideUnionForm()" ><span class="	glyphicon glyphicon-remove-circle fs30 iconCloseButton"></span></button>
                     </div>
 
                     <h2>{{titleForm}}</h2>
@@ -37,7 +39,7 @@
                         <div class="form-group">
                             <div class="form-group">
                                 <label for="countryid">Select the country:</label>
-                                <select id="countryid"  ng-options="c.idcountry as c.country for c in countriesSelectList" ng-model="unionForm.idcountry" />
+                                <select class="selectEspecialForm" id="countryid"  ng-options="c.idcountry as c.country for c in countriesSelectList" ng-model="unionForm.idcountry" />
                             </div>
 
                         </div>
@@ -56,8 +58,8 @@
 
                         <div class="pull-right">
 
-                            <button ng-show="showSaveButton" type="submit" class="btn btn-info" ng-disabled="!cForm.$valid" ng-click="saveUnion()" onclick="$('.alert').show()" >Save</button>
-                            <button ng-show="showUpdateButton" type="submit" class="btn btn-warning" ng-disabled="!cForm.$valid" ng-click="udpateUnion()" onclick="$('.alert').show()" >Update</button>
+                            <button ng-show="showSaveButton" type="submit" class="btn btn-info buttonAdd" ng-disabled="!cForm.$valid" ng-click="saveUnion()" onclick="$('.alert').show()" >Save</button>
+                            <button ng-show="showUpdateButton" type="submit" class="btn btn-warning buttonAdd" ng-disabled="!cForm.$valid" ng-click="udpateUnion()" onclick="$('.alert').show()" >Update</button>
                             <button ng-show="showDeleteButton" type="submit" class="btn btn-danger" ng-disabled="!cForm.$valid" ng-click="deleteUnion()" onclick="$('.alert').show()" >Delete</button>
 
                         </div>
@@ -67,6 +69,9 @@
 
                 </div>
 
+                <div class="col-md-12">
+                    <br/><br/>
+                </div>
 
 
 
@@ -74,12 +79,13 @@
 
 
 
-            <table class="table table-striped table-inverse" ng-show="districtsList.length != 0" >
+            <table class="table table-striped table-inverse tableStyle" ng-show="districtsList.length != 0" >
                 <thead >
                 <tr>
                     <th>ID</th>
                     <th>Name</th>
                     <th>Country</th>
+                    <th></th>
                 </tr>
                 </thead>
                 <tbody>
@@ -87,7 +93,7 @@
                     <th scope="row">{{u.union.idunion}}</th>
                     <td>{{u.union.unionname}}</td>
                     <td>{{u.country.country}}</td>
-                    <td><span  ng-click="selectUnion(u)" class="glyphicon glyphicon-eye-open IconRemove"></span></td>
+                    <td><center><button type="button" class="btn btn-default buttonAdd " ng-click="selectUnion(u)" ><span class="glyphicon glyphicon-edit"></span></button></center></td>
                 </tr>
 
                 </tbody>

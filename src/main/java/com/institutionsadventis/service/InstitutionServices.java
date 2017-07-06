@@ -31,7 +31,7 @@ public class InstitutionServices {
 
         List<InstitutionModel> temp = new ArrayList<>();
 
-        for(Institutions institution : institutionRepository.findByActive(true)){
+        for(Institutions institution : institutionRepository.findByActiveOrderByIdtypeinstitutionsAsc(true)){
 
             InstitutionModel institutionModel = new InstitutionModel();
             institutionModel.setInstitutions(institution);

@@ -4,46 +4,51 @@
 
     <div class="col-md-12">
 
-
+        <img id="logoImg"  src="/app/assets/img//Logo-Jovenes-Sureste-2.png"/>
 
         <br/>
+
+
+        <div class="pull-right">
+            <button type="button" class="btn btn-default mentinaceButton" ng-click="manageUrlsMentinance(1)" ><span class="glyphicon glyphicon-cog"></span> Districts</button>
+            <button type="button" class="btn btn-default mentinaceButton" ng-click="manageUrlsMentinance(2)" ><span class="glyphicon glyphicon-cog"></span> Association or Mission</button>
+            <button type="button" class="btn btn-default mentinaceButton" ng-click="manageUrlsMentinance(3)" ><span class="glyphicon glyphicon-cog"></span> Union</button>
+        </div>
+
+
+        <div class="col-md-12"><br/><br/></div>
 
         <div class="pull-right">
 
-            <label>-Select what do you want to see?</label>
+            <label class="fs15"><span class="glyphicon glyphicon-chevron-right"></span>Select what do you want to see?</label>
 
 
-            <select class="selectpicker" ng-model="typeSelect" ng-options="t.idtypeinstitutions as t.typename for t in typeinstitutions" ng-change="refreshInstitutionBaseOnSelectedType()">
+            <select class="selectEspecial" ng-model="typeSelect" ng-options="t.idtypeinstitutions as t.typename for t in typeinstitutions" ng-change="refreshInstitutionBaseOnSelectedType()">
             </select>
-            <button type="button" class="btn btn-success" ng-click="selectAll()">Select all</button>
-            <button type="button" class="btn btn-warning" ng-click="deselectAll()">Deselect All</button>
-            <button type="button" class="btn btn-default" ng-click="loadFormAddInstitutions()" >Add</button>
+            <button type="button" class="btn btn-success buttonInverse" ng-click="selectAll()"><span class="glyphicon glyphicon-ok"></span> Select all</button>
+            <button type="button" class="btn btn-warning buttonInverse" ng-click="deselectAll()"><span class="glyphicon glyphicon-remove"></span> Deselect All</button>
+            <button type="button" class="btn btn-default buttonAdd" ng-click="loadFormAddInstitutions()" ><span class="glyphicon glyphicon-pencil"></span> Add</button>
 
 
         </div>
 
-        <div class="pull-left">
-            <button type="button" class="btn btn-default" ng-click="manageUrlsMentinance(1)" >Mentinace of districts</button>
-            <button type="button" class="btn btn-default" ng-click="manageUrlsMentinance(2)" >Mentinace of Association or Mission</button>
-            <button type="button" class="btn btn-default" ng-click="manageUrlsMentinance(3)" >Mentinace of Union</button>
-        </div>
 
-        <br/>
-        <br/>
+        <div class="col-md-12" style="    margin-bottom: -1.6%;"><br/></div>
+
     </div>
 
 
 
-    <div class="container" ng-show="showInstitutionForm" >
+    <div class="container" ng-show="showInstitutionForm" style="    padding: 7%;" >
 
         <div class="col-md-12">
             <br/>
         </div>
 
-        <div class="col-md-12">
+        <div class="col-md-12  formMentinaceStyle"  >
 
             <div class="pull-right">
-                <button type="button" class="btn btn-default" ng-click="hideInstitutionForm()" >Close</button>
+                <button type="button" class="btn btn-default closeButton" ng-click="hideInstitutionForm()" ><span class="	glyphicon glyphicon-remove-circle fs30 iconCloseButton"></span></button>
             </div>
 
             <h2>{{titleForm}}</h2>
@@ -76,12 +81,12 @@
 
                     <div class="form-group">
                         <label for="typeInstitution">Type:<span style="color:red">*</span></label>
-                        <select id="typeInstitution"  ng-options="t.idtypeinstitutions as t.typename for t in selectTypeInstitutionsList" ng-model="institutionsForm.idtypeinstitutions" />
+                        <select class="selectEspecialForm" id="typeInstitution"  ng-options="t.idtypeinstitutions as t.typename for t in selectTypeInstitutionsList" ng-model="institutionsForm.idtypeinstitutions" />
                     </div>
 
                     <div class="form-group">
                         <label for="district">District:<span style="color:red">*</span></label>
-                        <select id="district" ng-options="d.iddistrict as d.district for d in selectDsitrictList" ng-model="institutionsForm.iddistrict" />
+                        <select class="selectEspecialForm" id="district" ng-options="d.iddistrict as d.district for d in selectDsitrictList" ng-model="institutionsForm.iddistrict" />
                     </div>
 
 
@@ -109,9 +114,9 @@
 
                 <div class="pull-right">
 
-                    <button ng-show="showSaveButton" type="submit" class="btn btn-info" ng-disabled="!cForm.$valid" ng-click="saveInsttituion()" onclick="$('.alert').show()" >Save</button>
-                    <button ng-show="showUpdateButton" type="submit" class="btn btn-warning" ng-disabled="!cForm.$valid" ng-click="updateInsttituion()" onclick="$('.alert').show()" >Update</button>
-                    <button ng-show="showDeleteButton" type="submit" class="btn btn-danger" ng-disabled="!cForm.$valid" ng-click="deleteInsttituion()" onclick="$('.alert').show()" >Delete</button>
+                    <button ng-show="showSaveButton" type="submit" class="btn btn-info buttonAdd" ng-disabled="!cForm.$valid" ng-click="saveInsttituion()" onclick="$('.alert').show()" >Save</button>
+                    <button ng-show="showUpdateButton" type="submit" class="btn btn-warning buttonAdd" ng-disabled="!cForm.$valid" ng-click="updateInsttituion()" onclick="$('.alert').show()" >Update</button>
+                    <button ng-show="showDeleteButton" type="submit" class="btn btn-danger " ng-disabled="!cForm.$valid" ng-click="deleteInsttituion()" onclick="$('.alert').show()" >Delete</button>
 
                 </div>
 
@@ -120,9 +125,6 @@
 
         </div>
 
-        <div class="col-md-12">
-            <br/>
-        </div>
 
     </div>
 
@@ -131,9 +133,9 @@
     <div class="col-md-12">
 
 
-        <ng-map zoom="12" center="{{latitudeLogitudWherePageIsOpen}}">
+        <ng-map class="mapStyle" zoom="13" center="{{latitudeLogitudWherePageIsOpen}}">
             <marker ng-if="i[0].checked"  ng-repeat="i in institutions" position="{{i[1].institutions.latitude}}, {{i[1].institutions.longitude}}"
-                    icon="/app/assets/img/{{i[1].typeinstitutions.typename === 'Chursh' ? 'chursh.ico' : '' }}{{i[1].typeinstitutions.typename === 'School' ? 'school.png' :  ''}}{{i[1].typeinstitutions.typename === 'University' ? 'uni.ico' : ''}}{{i[1].typeinstitutions.typename === 'Hospital' ? 'hospital.png' : ''}}{{i[1].typeinstitutions.typename === 'Restaurant' ? 'restaurant.png' : ''}} "
+                    icon="/app/assets/img/{{i[1].typeinstitutions.typename === 'Chursh' ? 'Icon-APP-Iglesia.png' : '' }}{{i[1].typeinstitutions.typename === 'School' ? 'Icon-APP-Colegio.png' :  ''}}{{i[1].typeinstitutions.typename === 'University' ? 'Icon-APP-Oficina.png' : ''}}{{i[1].typeinstitutions.typename === 'Hospital' ? 'Icon-APP-Hospital.png' : ''}}{{i[1].typeinstitutions.typename === 'Restaurant' ? 'restaurant.png' : ''}} "
 
                     title="{{ i[1].typeinstitutions.typename === 'Chursh' ? prename : ''}} ({{i[1].institutions.name | uppercase }})"
                     animation="Animation.BOUNCE"
@@ -148,32 +150,48 @@
 
     <div class="col-md-12">
         <br/>
+        <br/>
+    </div>
+    <div class="pull-left" style="    margin-left: 1.5%;">
+        <fieldset class="form-group" >
+            <legend>Legends about institutions</legend>
+            <img src="/app/assets/img/Icon-APP-Iglesia.png" /> <label class="fs15">Chursh</label>
+            <img src="/app/assets/img/Icon-APP-Colegio.png" /> <label class="fs15">School</label>
+            <img src="/app/assets/img/Icon-APP-Oficina.png" /> <label class="fs15">University</label>
+            <img src="/app/assets/img/Icon-APP-Hospital.png" /> <label class="fs15">Hospital</label>
+            <img src="/app/assets/img/restaurant.png" /><label class="fs15">Restaurant</label>
+        </fieldset>
     </div>
 
 
 
 
-        <div class="col-md-12">
+
+    <div class="col-md-12">
 
 
 
 
             <ul class="list-group" >
-                <li ng-repeat="i in institutions"  class="{{i[1].typeinstitutions.typename === 'Chursh' ? 'list-group-item list-group-item-success' : '' }}
-               {{i[1].typeinstitutions.typename === 'School' ? 'list-group-item list-group-item-info' :  ''}}
-               {{i[1].typeinstitutions.typename === 'University' ? 'list-group-item list-group-item-warning' : ''}}
-               {{i[1].typeinstitutions.typename === 'Hospital' ? 'list-group-item list-group-item-danger' : ''}}
-               {{i[1].typeinstitutions.typename === 'Restaurant' ? 'list-group-item list-group-item-danger' : ''}}">
+                <li ng-repeat="i in institutions"  class="list-group-item listInstitutions {{i[1].typeinstitutions.typename === 'Chursh' ? 'listChursh' : '' }}
+               {{i[1].typeinstitutions.typename === 'School' ? 'listSchool' :  ''}}
+               {{i[1].typeinstitutions.typename === 'University' ? 'listUniversity' : ''}}
+               {{i[1].typeinstitutions.typename === 'Hospital' ? 'listHospital' : ''}}
+               {{i[1].typeinstitutions.typename === 'Restaurant' ? 'listRestaurant' : ''}}">
 
-                    <input type="checkbox" ng-model="i[0].checked"> {{i[1].institutions.name | uppercase }} {{i.checked}}
+                    <input class="slideOne" type="checkbox" ng-model="i[0].checked"> {{i[1].institutions.name | uppercase }} {{i.checked}}
 
-                    <button type="button" class="btn btn-default" ng-click="loadInfoInstitutionToBeUpdatedOrDeleted(i)" >Modify</button>
+                    <div class="pull-right">
+                        <button id="updateButtonListStyle" type="button" class="btn btn-default buttonAdd " ng-click="loadInfoInstitutionToBeUpdatedOrDeleted(i)" ><span class="glyphicon glyphicon-edit"></span></button>
+
+                    </div>
 
                 </li>
 
             </ul>
 
         </div>
+
 
 
 </div>

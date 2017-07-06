@@ -11,8 +11,8 @@
     <div class="col-md-12">
 
         <div class="pull-right">
-            <button type="button" class="btn btn-default" ng-click="goToMainPage()" >Back to main page</button>
-            <button type="button" class="btn btn-default" ng-click="cleanFormDistrict()" > Add</button>
+            <button type="button" class="btn btn-default mentinaceButton" ng-click="goToMainPage()" >Back to main page</button>
+            <button type="button" class="btn btn-default buttonAdd" ng-click="cleanFormDistrict()" > Add</button>
             <br/>
             <br/>
         </div>
@@ -23,10 +23,11 @@
                 <br/>
             </div>
 
-            <div class="col-md-12" style="background-color: white">
+            <div class="col-md-12 formMentinaceStyle" >
+
 
                 <div class="pull-right">
-                    <button type="button" class="btn btn-default" ng-click="hideDistrictForm()" >Close</button>
+                    <button type="button" class="btn btn-default closeButton" ng-click="hideDistrictForm()" ><span class="	glyphicon glyphicon-remove-circle fs30 iconCloseButton"></span></button>
                 </div>
 
                 <h2>{{titleForm}}</h2>
@@ -37,7 +38,7 @@
 
                     <div class="form-group">
                         <label for="selectZone">Select the zone:</label>
-                        <select id="selectZone" class="selectpicker" ng-model="formDistrict.zone">
+                        <select id="selectZone" class="selectEspecialForm" ng-model="formDistrict.zone">
                             <option value ="1">Zone 1</option>
                             <option value ="2">Zone 2</option>
                             <option value ="3">Zone 3</option>
@@ -51,7 +52,7 @@
                     <div class="form-group">
                         <div class="form-group">
                             <label for="associationormissionid">Select the association or mission:</label>
-                            <select id="associationormissionid"  ng-options="a.idassociationormission as a.name for a in associationOrMissionSelectList" ng-model="formDistrict.idassociationormission" />
+                            <select class="selectEspecialForm" style="width: 70% !important;" id="associationormissionid"  ng-options="a.idassociationormission as a.name for a in associationOrMissionSelectList" ng-model="formDistrict.idassociationormission" />
                         </div>
 
                     </div>
@@ -71,8 +72,8 @@
 
                     <div class="pull-right">
 
-                        <button ng-show="showSaveButton" type="submit" class="btn btn-info" ng-disabled="!cForm.$valid" ng-click="saveDistrict()" onclick="$('.alert').show()" >Save</button>
-                        <button ng-show="showUpdateButton" type="submit" class="btn btn-warning" ng-disabled="!cForm.$valid" ng-click="updateDistrict()" onclick="$('.alert').show()" >Update</button>
+                        <button ng-show="showSaveButton" type="submit" class="btn btn-info buttonAdd" ng-disabled="!cForm.$valid" ng-click="saveDistrict()" onclick="$('.alert').show()" >Save</button>
+                        <button ng-show="showUpdateButton" type="submit" class="btn btn-warning buttonAdd" ng-disabled="!cForm.$valid" ng-click="updateDistrict()" onclick="$('.alert').show()" >Update</button>
                         <button ng-show="showDeleteButton" type="submit" class="btn btn-danger" ng-disabled="!cForm.$valid" ng-click="deleteDistrict()" onclick="$('.alert').show()" >Delete</button>
 
                     </div>
@@ -82,20 +83,23 @@
 
             </div>
 
-
+            <div class="col-md-12">
+                <br/> <br/>
+            </div>
 
 
     </div>
 
 
 
-        <table class="table table-striped table-inverse" ng-show="districtsList.length != 0" >
+        <table class="table table-striped table-inverse tableStyle" ng-show="districtsList.length != 0" >
             <thead >
             <tr>
                 <th>ID</th>
                 <th>Association or Mission</th>
                 <th>District</th>
                 <th>Zone</th>
+                <th></th>
             </tr>
             </thead>
             <tbody>
@@ -104,8 +108,9 @@
                 <td>{{d.associationormission.name}}</td>
                 <td>{{d.district.district}}</td>
                 <td>{{d.district.zone}}</td>
-                <td><span  ng-click="selectDistrict(d)" class="glyphicon glyphicon-eye-open IconRemove"></span></td>
+                <td><center><button type="button" class="btn btn-default buttonAdd " ng-click="selectDistrict(d)" ><span class="glyphicon glyphicon-edit"></span></button></center></td>
             </tr>
+
 
             </tbody>
         </table>
